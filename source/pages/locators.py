@@ -1,0 +1,1 @@
+FLIGHT_LIST= '//*[@id="SearchRoot"]//div[contains(@class ,"flightItemContainer" )]'
