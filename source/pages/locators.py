@@ -5,4 +5,6 @@ AIRLINE = '//*[@class="summary-airline"]'
 PRICE = 'money-int'
 CURRENCY = 'money-currency'
 SUMMARY_AIRLINE ='summary-airline'
+SUMMARY_TIME ='summary-time'
+SUMMARY_DURATION ='summary-duration'
 # (//*[@id="SearchRoot"]//div[contains(@class ,"flightItemContainer" )])[4]//*[@class="summary-airline"]

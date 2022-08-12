@@ -28,10 +28,8 @@ class Flight:
         for company in companies:
             self.airlines.append(company.text)
         
-        # self.departureTime =
-        # self.arrivalTime =
-        # self.duration =
-
+        self.departureTime = flight.find_element(By.CLASS_NAME,locators.SUMMARY_TIME).text
+        self.duration = flight.find_element(By.CLASS_NAME,locators.SUMMARY_DURATION).text
 """
 Dates must be in the format of dd.mm.yyyy
 """
@@ -48,13 +46,19 @@ def searchEnUygun(departureDate,returnDate,numPeople,tripType):
         time.sleep(15)
         driver.find_element(By.XPATH,locators.TWO_TRANSFER).click()
         time.sleep(5)
-        offerlist = driver.find_elements(By.XPATH,locators.OFFER_LIST)
+        rawofferlist = driver.find_elements(By.XPATH,locators.OFFER_LIST)
         
+    
+        
+        offerlist=[]
 
-
-        for offers in offerlist:
+        for offers in rawofferlist:
             
             offer = Offer(driver,offers)
+            offerlist.append(offer)
+        
+        print('')
 
 
 searchEnUygun("26.08.2022","21.12.2022","1","international")
+
