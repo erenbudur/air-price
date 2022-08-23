@@ -1,5 +1,6 @@
 
 from lib2to3.pgen2 import driver
+from locale import currency
 from bs4 import Tag
 import click
 from numpy import double
@@ -18,6 +19,22 @@ class Offer:
         self.arrival = Flight(driver,flights[1])
         self.price = float(offer.find_element(By.CLASS_NAME,locators.PRICE).text)
         self.currency = offer.find_element(By.CLASS_NAME,locators.CURRENCY).text
+
+    def __str__(self) -> str:
+        airlinesDepStr = ','.join(self.departure.airlines) 
+        airlinesArrivalStr = ','.join(self.arrival.airlines) 
+        var ="""
+        Departure:
+            Airlines:  {airDep}
+            Time: {timeDep}
+            Duration: {durDep}
+        Return:
+            Airlines:  {airArr}
+            Time: {timeArr}
+            Duration: {durArr}
+        Price: {price} {currency}
+        """.format(airDep=airlinesDepStr,airArr=airlinesArrivalStr,timeDep=self.departure.departureTime,timeArr=self.arrival.departureTime, durDep = self.departure.duration,durArr = self.arrival.duration, price = self.price, currency=self.currency)
+        return var 
 
 class Flight:
     def __init__(self,driver:webdriver.Chrome,flight) -> None:
@@ -57,8 +74,6 @@ def searchEnUygun(departureDate,returnDate,numPeople,tripType):
             offer = Offer(driver,offers)
             offerlist.append(offer)
         
-        print('')
+        return offerlist    
 
-
-searchEnUygun("26.08.2022","21.12.2022","1","international")
-
+print('Done')
