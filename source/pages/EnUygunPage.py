@@ -9,6 +9,7 @@ import selenium
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 import time
 import locators
 
@@ -53,9 +54,10 @@ Dates must be in the format of dd.mm.yyyy
 def searchEnUygun(departureDate,returnDate,numPeople,tripType):
            
     start_url = "https://www.enuygun.com/ucak-bileti/istanbul-boston-logan-intl-havalimani-ista-bos/?gidis="
+    options = Options()
+    options.headless = True
 
-
-    with webdriver.Chrome() as driver:
+    with webdriver.Chrome(options=options) as driver:
         wait = WebDriverWait(driver,10)
         #international
         driver.get(start_url + departureDate+ "&donus=" + returnDate + "&yetiskin=" + numPeople + "&sinif=ekonomi&save=1&geotrip=international&1trip=" + tripType)
