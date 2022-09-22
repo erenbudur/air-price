@@ -11,6 +11,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import time
+import chromedriver_autoinstaller
 import locators
 
 class Offer:
@@ -52,7 +53,10 @@ class Flight:
 Dates must be in the format of dd.mm.yyyy
 """
 def searchEnUygun(departureDate,returnDate,numPeople,tripType):
-           
+        
+
+
+    chromedriver_autoinstaller.install()    
     start_url = "https://www.enuygun.com/ucak-bileti/istanbul-boston-logan-intl-havalimani-ista-bos/?gidis="
     options = Options()
     options.headless = True
